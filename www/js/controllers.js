@@ -66,6 +66,27 @@ function ($scope, $stateParams) {
         })
       });
 
+
+
+      var marker = new ol.Feature({
+        type: 'icon',
+        geometry: new ol.geom.Point( ol.proj.transform([-3.6819, 40.4145], 'EPSG:4326','EPSG:3857'))
+      });
+
+      var vectorLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [marker]
+        }),
+        style: new ol.style.Style({
+          image: new ol.style.Icon({
+            anchor: [0.5, 1],
+            src: 'https://openlayers.org/en/v3.20.1/examples/data/icon.png'
+          })
+        })
+      });
+
+      map.addLayer(vectorLayer);
+
 }])
    
 .controller('gameCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
